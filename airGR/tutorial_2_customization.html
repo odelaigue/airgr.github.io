@@ -286,7 +286,7 @@ div.tocify {
 <li>Two possibilities exist to include the new model:
 <ol style="list-style-type: lower-alpha">
 <li>Create a dynamically loadable library (DLL; also known as shared object) ensuring compatibility with <strong>R</strong> and load it with the <code>dyn.load()</code> function</li>
-<li>Create a new package dependent on <strong>airGR</strong> which contains only your <strong>R</strong> model and functions of step 2 #je ne comprends pas</li>
+<li>Create a new package dependent on <strong>airGR</strong> which contains only your <strong>R</strong> model and functions of step 2</li>
 </ol></li>
 <li>If the new model requires different model input that are already present in <strong>airGR</strong>, you have to adapt the <code>CreateInputsModel()</code> and <code>CreateRunOptions()</code> functions (note: it is better to duplicate these functions and to modify them, to avoid any conflict when using original <strong>airGR</strong> models)</li>
 </ol>
