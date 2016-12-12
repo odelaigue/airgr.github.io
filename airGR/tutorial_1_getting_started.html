@@ -337,6 +337,16 @@ div.tocify {
 <p>In the following example, we use a data sample contained in the package. For real applications, the user has to import its data into <strong>R</strong> and to prepare it with an adequate data.frame format as described below.</p>
 <p>First, it is necessary to load the <strong>airGR</strong> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(airGR)</code></pre></div>
+<pre><code>## 
+## To cite airGR in publications use these two references:
+## 
+##   Coron, L., Thirel, G., Delaigue, O., Perrin, C. and Andréassian,
+##   V. (submitted). airGR: A suite of lumped hydrological models in
+##   an R-package. Environmental Modelling and software.
+## 
+##   Coron, L., Perrin, C. and Michel, C. (2016). airGR: Suite of GR
+##   hydrological models for precipitation-runoff modelling. R
+##   package version 1.0.3. https://webgr.irstea.fr/airGR/?lang=en.</code></pre>
 <p>This is an example of a <code>data.frame</code> of hydrometeorological observations time series for a fictional catchment included in the <strong>airGR</strong> package that contains:</p>
 <ul>
 <li><em>DatesR</em>: dates in the POSIXt format</li>
@@ -462,10 +472,9 @@ div.tocify {
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel)
 <span class="kw">str</span>(CalibOptions)</code></pre></div>
-<pre><code>## List of 4
+<pre><code>## List of 3
 ##  $ FixedParam       : logi [1:4] NA NA NA NA
 ##  $ SearchRanges     : num [1:2, 1:4] 4.59e-05 2.18e+04 -1.09e+04 1.09e+04 4.59e-05 ...
-##  $ StartParam       : num [1:4] 247.151 -0.649 42.098 1.944
 ##  $ StartParamDistrib: num [1:3, 1:4] 169.017 247.151 432.681 -2.376 -0.649 ...
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;CalibOptions&quot; &quot;GR4J&quot; &quot;HBAN&quot;</code></pre>
 </div>
@@ -554,21 +563,26 @@ Param</code></pre></div>
 <div id="efficiency-criterion" class="section level2">
 <h2><span class="header-section-number">6.3</span> Efficiency criterion</h2>
 <p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use an other criterion.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)
-<span class="kw">str</span>(OutputsCrit)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</code></pre></div>
+<pre><code>## Crit. NSE[Q] = 0.7985</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(OutputsCrit)</code></pre></div>
 <pre><code>## List of 5
 ##  $ CritValue      : num 0.799
 ##  $ CritName       : chr &quot;NSE[Q]&quot;
 ##  $ CritBestValue  : num 1
 ##  $ Multiplier     : num -1
 ##  $ Ind_notcomputed: int [1:40] 2405 2406 2407 2408 2409 2410 2411 2412 2413 2414 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_KGE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)
-<span class="kw">str</span>(OutputsCrit)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_KGE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</code></pre></div>
+<pre><code>## Crit. KGE[Q] = 0.7855</code></pre>
+<pre><code>##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.8983 
+##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 0.8163 
+##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 1.0439</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(OutputsCrit)</code></pre></div>
 <pre><code>## List of 7
 ##  $ CritValue      : num 0.785
 ##  $ CritName       : chr &quot;KGE[Q]&quot;
 ##  $ SubCritValues  : num [1:3] 0.898 0.816 1.044
-##  $ SubCritNames   : chr [1:3] &quot;KGE[Q] rPEARSON(sim vs. obs)&quot; &quot;KGE[Q] STDEVsim/STDEVobs&quot; &quot;KGE[Q] MEANsim/MEANobs&quot;
+##  $ SubCritNames   : chr [1:3] &quot;KGE[Q] cor(sim, obs, \&quot;pearson\&quot;) =&quot; &quot;KGE[Q] sd(sim)/sd(obs)          =&quot; &quot;KGE[Q] mean(sim)/mean(obs)      =&quot;
 ##  $ CritBestValue  : num 1
 ##  $ Multiplier     : num -1
 ##  $ Ind_notcomputed: int [1:40] 2405 2406 2407 2408 2409 2410 2411 2412 2413 2414 ...</code></pre>
