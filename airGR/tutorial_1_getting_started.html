@@ -22,6 +22,7 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -180,7 +181,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -206,7 +206,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -265,8 +265,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -337,16 +338,6 @@ div.tocify {
 <p>In the following example, we use a data sample contained in the package. For real applications, the user has to import its data into <strong>R</strong> and to prepare it with an adequate data.frame format as described below.</p>
 <p>First, it is necessary to load the <strong>airGR</strong> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(airGR)</code></pre></div>
-<pre><code>## 
-## To cite airGR in publications use these two references:
-## 
-##   Coron, L., Thirel, G., Delaigue, O., Perrin, C. and Andréassian,
-##   V. (submitted). airGR: A suite of lumped hydrological models in
-##   an R-package. Environmental Modelling and software.
-## 
-##   Coron, L., Perrin, C. and Michel, C. (2016). airGR: Suite of GR
-##   hydrological models for precipitation-runoff modelling. R
-##   package version 1.0.3. https://webgr.irstea.fr/airGR/?lang=en.</code></pre>
 <p>This is an example of a <code>data.frame</code> of hydrometeorological observations time series for a fictional catchment included in the <strong>airGR</strong> package that contains:</p>
 <ul>
 <li><em>DatesR</em>: dates in the POSIXt format</li>
@@ -502,14 +493,20 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCalib &lt;-<span class="st"> </span><span class="kw">Calibration_Michel</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions,
                                    <span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">CalibOptions =</span> CalibOptions,
                                    <span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CRIT =</span> ErrorCrit_NSE)</code></pre></div>
-<pre><code>##   Grid-Screening in progress (0% 20% 40% 60% 80% 100%) 
-##   Screening completed (81 runs): 
-##       Param =  247.151 ,   -0.020 ,   83.096 ,    2.384
-##       Crit NSE[Q]       = 0.7685
-##   Steepest-descent local search in progress 
-##   Calibration completed (20 iterations, 226 runs): 
-##       Param =  257.238 ,    1.012 ,   88.235 ,    2.208
-##       Crit NSE[Q]       = 0.7985</code></pre>
+<pre><code>## Grid-Screening in progress (</code></pre>
+<pre><code>## 0%</code></pre>
+<pre><code>## 20%</code></pre>
+<pre><code>## 40%</code></pre>
+<pre><code>## 60%</code></pre>
+<pre><code>## 80%</code></pre>
+<pre><code>##  100%)</code></pre>
+<pre><code>##   Screening completed (81 runs)</code></pre>
+<pre><code>##       Param =  247.151 ,   -0.020 ,   83.096 ,    2.384</code></pre>
+<pre><code>##       Crit NSE[Q]       = 0.7685</code></pre>
+<pre><code>## Steepest-descent local search in progress</code></pre>
+<pre><code>##   Calibration completed (20 iterations, 226 runs)</code></pre>
+<pre><code>##       Param =  257.238 ,    1.012 ,   88.235 ,    2.208</code></pre>
+<pre><code>##       Crit NSE[Q]       = 0.7985</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Param &lt;-<span class="st"> </span>OutputsCalib$ParamFinalR
 Param</code></pre></div>
 <pre><code>## [1] 257.237556   1.012237  88.234673   2.207958</code></pre>
@@ -557,6 +554,10 @@ Param</code></pre></div>
 <li>cumulative frequency plot for simulated streamflows (and for observed streamflows if provided)</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_OutputsModel</span>(<span class="dt">OutputsModel =</span> OutputsModel, <span class="dt">Qobs =</span> BasinObs$Qmm[Ind_Run])</code></pre></div>
+<pre><code>## Warning: Deprecated function. Please, use plot.OutputsModel() or plot() on
+## an object of class OutputsModel.</code></pre>
+<pre><code>## Warning in plot_OutputsModel(OutputsModel = OutputsModel, Qobs = BasinObs
+## $Qmm[Ind_Run]): Deprecated &quot;OutputsModel&quot; argument Please, use &quot;x&quot; instead.</code></pre>
 <p><img src="tutorial_1_getting_started_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Moreover, if the CemaNeige model is used, the simulated snowpack time series are plotted.</p>
 </div>
@@ -599,8 +600,11 @@ Param</code></pre></div>
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 
