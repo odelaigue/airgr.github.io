@@ -306,12 +306,13 @@ div.tocify {
         <li><a href="tutorial_1_getting_started.html">Getting started</a></li>
 		<li><a href="tutorial_2_customization.html">Customization</a></li>
         <li class="Download">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docs<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="https://webgr.irstea.fr/airgr/download-airgr-sources/?lang=en" onclick="window.open(this.href); return false;">Sources (for Windows / Linux / Mac)</a></li>
-            <li><a href="https://webgr.irstea.fr/activites/airgr/download-windows-airgr/?lang=en" onclick="window.open(this.href); return false;">Windows Binaries (32-bits & 64-bits)</a></li>
+            <li><a href="https://cran.r-project.org/web/packages/airGR/airGR.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+            <li><a href="https://cran.r-project.org/web/packages/airGR/NEWS" onclick="window.open(this.href); return false;">News</a></li>
           </ul>
-        </li>		
+        </li>	
+		<li><a href="https://cran.r-project.org/web/packages/airGR/index.html">Download</a></li>		
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<li><a href="https://webgr.irstea.fr/?lang=en" onclick="window.open(this.href); return false;">Catchment Hydrology Team (Antony - France)</a></li>
@@ -546,18 +547,14 @@ Param</code></pre></div>
 </div>
 <div id="results-preview" class="section level2">
 <h2><span class="header-section-number">6.2</span> Results preview</h2>
-<p>Although it is possible for the user to design its own graphics from the outputs of the <code>RunModel*()</code> functions, the <strong>airGR</strong> package offers the possibility to make use of the <code>plot_OutputsModel()</code> function. This function returns a dashboard of results including various graphs (depending on the model used):</p>
+<p>Although it is possible for the user to design its own graphics from the outputs of the <code>RunModel*()</code> functions, the <strong>airGR</strong> package offers the possibility to make use of the <code>plot()</code> function. This function returns a dashboard of results including various graphs (depending on the model used):</p>
 <ul>
 <li>time series of total precipitation and simulated streamflows (and observed streamflows if provided)</li>
 <li>interannual median monthly simulated streamflows (and monthly observed streamflows if provided)</li>
 <li>correlation plot between simulated and observed streamflows (if observed streamflows provided)</li>
 <li>cumulative frequency plot for simulated streamflows (and for observed streamflows if provided)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_OutputsModel</span>(<span class="dt">OutputsModel =</span> OutputsModel, <span class="dt">Qobs =</span> BasinObs$Qmm[Ind_Run])</code></pre></div>
-<pre><code>## Warning: Deprecated function. Please, use plot.OutputsModel() or plot() on
-## an object of class OutputsModel.</code></pre>
-<pre><code>## Warning in plot_OutputsModel(OutputsModel = OutputsModel, Qobs = BasinObs
-## $Qmm[Ind_Run]): Deprecated &quot;OutputsModel&quot; argument Please, use &quot;x&quot; instead.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(OutputsModel, <span class="dt">Qobs =</span> BasinObs$Qmm[Ind_Run])</code></pre></div>
 <p><img src="tutorial_1_getting_started_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Moreover, if the CemaNeige model is used, the simulated snowpack time series are plotted.</p>
 </div>
