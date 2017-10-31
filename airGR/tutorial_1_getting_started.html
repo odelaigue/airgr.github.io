@@ -515,8 +515,8 @@ Param</code></pre></div>
 <p>The <code>Calibration_Michel()</code> function is the only one implemented in the <strong>airGR</strong> package to calibrate the model, but the user can implement its own calibration function.</p>
 <p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
 </div>
-<div id="validation" class="section level1">
-<h1><span class="header-section-number">5</span> Validation</h1>
+<div id="control" class="section level1">
+<h1><span class="header-section-number">5</span> Control</h1>
 <p>This step assesses the predictive capacity of the model. Control is defined as the estimation of the accuracy of the model on datasets that are not used in its construction, and in particular its calibration. The classical way to perform a control is to keep data from a period separated from the calibration period. If possible, this control period should correspond to climatic situations that differ from those of the calibration period in order to better point out the qualities and weaknesses of the model. This exercise is necessary for assessing the robustness of the model, that is to say its ability to keep stable performances outside of the calibration conditions.</p>
 <p>Performing a model control with <strong>airGR</strong> is similar to running a simulation (see below), followed by the computation of one or several performance criteria.</p>
 </div>
