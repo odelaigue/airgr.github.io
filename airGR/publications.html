@@ -11,7 +11,7 @@
 
 
 
-<title>Customization</title>
+<title>Publications</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -292,22 +292,49 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Customization</h1>
+<h1 class="title toc-ignore">Publications</h1>
 
 </div>
 
 
-<p>It is possible to complement the <strong>airGR</strong> package with a new model. To do that, the main steps are the following:</p>
-<ol style="list-style-type: decimal">
-<li>Write a model in Fortran or modify an existing Fortran code that is included in the <strong>airGR</strong> package</li>
-<li>Create specific <strong>R</strong> functions to the model (<code>RunModel_MyNewModel()</code>, <code>TransfParam_MyNewModel()</code>)</li>
-<li>Two possibilities exist to include the new model:
-<ol style="list-style-type: lower-alpha">
-<li>Create a dynamically loadable library (DLL; also known as shared object) ensuring compatibility with <strong>R</strong> and load it with the <code>dyn.load()</code> function</li>
-<li>Create a new package dependent on <strong>airGR</strong> which contains only your <strong>R</strong> model and functions of step 2</li>
-</ol></li>
-<li>If the new model requires model inputs that are not already present in <strong>airGR</strong>, you have to adapt the <code>CreateInputsModel()</code> and <code>CreateRunOptions()</code> functions (note: it is better to duplicate these functions and to modify them, to avoid any conflict when using original <strong>airGR</strong> models)</li>
-</ol>
+<div id="article" class="section level2">
+<h2>Article</h2>
+<ul>
+<li>Coron, L., Thirel, G., Delaigue, O., Perrin, C. and Andréassian, V. (submitted). airGR: A Suite of Lumped Hydrological Models in an R-Package. Environmental Modelling and Software.<br />
+<a href="http://www.sciencedirect.com/science/article/pii/S1364815217300208">Download the article</a></li>
+</ul>
+</div>
+<div id="talks" class="section level2">
+<h2>Talks</h2>
+<div id="section" class="section level3">
+<h3>2017</h3>
+<ul>
+<li><strong>airGRteaching : un package pour l’apprentissage de la modélisation hydrologique pluie-débit</strong><br />
+Poster at <a href="http://angletr2017.com/">Rencontres R #6</a>, Anglet (France), 28-30 June 2017.<br />
+<a href="https://webgr.irstea.fr/wp-content/uploads/2017/07/airGRteaching_poster_rencontres-R-6_2017-06-2830.pdf">PDF version of the poster</a></li>
+<li><strong>Recent developments of the airGR R package, an open source software for rainfall-runoff modelling</strong><br />
+Poster at <a href="https://www.egu2017.eu/">European Geoscience Union General Assembly #16</a>, Vienna (Austria), 23-28 April 2017<br />
+<a href="https://webgr.irstea.fr/wp-content/uploads/2017/07/airGR_poster_EGU_2017-04-24.pdf">PDF version of the poster</a></li>
+<li><strong>airGRteaching: an R package designed for teaching hydrology with lumped hydrological models</strong><br />
+Poster at <a href="https://www.egu2017.eu/">European Geoscience Union General Assembly #16</a>, Vienna (Austria), 23-28 April 2017<br />
+<a href="https://webgr.irstea.fr/wp-content/uploads/2017/10/airGRteaching_pico_2017-04-26_DIAPO.pdf">PDF version of the Pico slides</a></li>
+</ul>
+</div>
+<div id="section-1" class="section level3">
+<h3>2016</h3>
+<ul>
+<li><strong>airGR: an R-package suitable for large sample hydrology presenting a suite of lumped hydrological model</strong><br />
+Poster at <a href="http://fallmeeting.agu.org/2016/">American Geophysical Union Fall Meeting #49</a>, San Francisco (USA), 12-16 Decembre 2016<br />
+<a href="https://webgr.irstea.fr/wp-content/uploads/2016/12/Poster_airGR_AGU_vfinale.pdf">PDF version of the poster</a></li>
+<li><strong>airGR : un package de modélisation hydrologique pour la simulation des débits</strong><br />
+Poster at <a href="https://r2016-toulouse.sciencesconf.org/">Rencontres R #5</a>, Toulouse (France), 22-24 June 2016<br />
+<a href="https://webgr.irstea.fr/wp-content/uploads/2017/03/airGR_poster_rencontres-R-5_2016-06-2224.pdf">PDF version of the poster</a></li>
+<li><strong>airGR: a suite of lumped hydrological models in an R-package</strong><br />
+Poster at <a href="https://www.egu2016.eu/">European Geoscience Union General Assembly #15</a>, Vienna (Austria), 17–22 April 2016<br />
+<a href="https://webgr.irstea.fr/wp-content/uploads/2016/05/Poster_airGR_EGU_vfinale.pdf">PDF version of the poster</a></li>
+</ul>
+</div>
+</div>
 
 <footer>
 <p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Team</a>&nbsp;- Antony, France.</p>
