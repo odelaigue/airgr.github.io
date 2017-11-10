@@ -350,7 +350,7 @@ div.tocify {
 <p>In the <strong>airGR</strong> package, the classical way to calibrate a model is to use the Michel’s algorithm (see the <code>Calibration_Michel()</code> function).</p>
 <p>The Michel’s algorithm combines a global and a local approach. A screening is first performed either based on a rough predefined grid (considering various initial values for each parameter) or from a list of initial parameter sets. The best set identified in this screening is then used as a starting point for the steepest descent local search algorithm.</p>
 <p>In some specific situations, for example if the calibration period is too short and by consequence non representative of the catchment behavior, a local calibration algorithm can give poor results.</p>
-<p>In this page, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">(<span class="citeproc-not-found" data-reference-id="andreassian_seeking_2014"><strong>???</strong></span>)</span>.</p>
+<p>In this page, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">Andréassian et al. (2014)</span>.</p>
 </div>
 <div id="data-preparation" class="section level2">
 <h2><span class="header-section-number">1.2</span> Data preparation</h2>
@@ -360,7 +360,7 @@ div.tocify {
 
 ## loading generalist parameter sets
 <span class="kw">data</span>(Param_Sets_GR4J)</code></pre></div>
-<p>The given GR4J <strong>X4u</strong> variable does not correspond to the actual GR4J <strong>X4</strong> parameter. As explained in <span class="citation">(<span class="citeproc-not-found" data-reference-id="andreassian_seeking_2014"><strong>???</strong></span>)</span>, the given GR4J <strong>X4u</strong> value has to be adjusted (rescaled) using catchment area (S) [km2] as follows: <code>X4 = X4u / 5.995 * S^0.3</code> (please= note that <strong>the formula is erroneous in the publication</strong>).</p>
+<p>The given GR4J <strong>X4u</strong> variable does not correspond to the actual GR4J <strong>X4</strong> parameter. As explained in <span class="citation">Andréassian et al. (2014, sec. 2.1)</span>, the given GR4J <strong>X4u</strong> value has to be adjusted (rescaled) using catchment area (S) [km2] as follows: <code>X4 = X4u / 5.995 * S^0.3</code> (please= note that <strong>the formula is erroneous in the publication</strong>).</p>
 <p>It means we need first to transform the <strong>X4</strong> parameter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Param_Sets_GR4J<span class="op">$</span>X4 &lt;-<span class="st"> </span>Param_Sets_GR4J<span class="op">$</span>X4u <span class="op">/</span><span class="st"> </span><span class="fl">5.995</span> <span class="op">*</span><span class="st"> </span>BasinInfo<span class="op">$</span>BasinArea<span class="op">^</span><span class="fl">0.3</span>
 Param_Sets_GR4J<span class="op">$</span>X4u &lt;-<span class="st"> </span><span class="ot">NULL</span>
@@ -416,7 +416,7 @@ InputsCrit_Val  &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit<
 <div id="calibration-of-the-gr4j-model-with-the-generalist-parameter-sets" class="section level1">
 <h1><span class="header-section-number">2</span> Calibration of the GR4J model with the generalist parameter sets</h1>
 <p>It is recommended to use the generalist parameter sets when the calibration period is less than 6 month.</p>
-<p>As shown in <span class="citation">(<span class="citeproc-not-found" data-reference-id="andreassian_seeking_2014"><strong>???</strong></span>)</span>, a recommended way to use the <code>Param_Sets_GR4J</code> <code>data.frame</code> is to run the GR4J model with each parameter set and to select the best one according to an objective function (here we use the Nash-Sutcliffe Efficiency criterion).</p>
+<p>As shown in <span class="citation">Andréassian et al. (2014, fig. 4)</span>, a recommended way to use the <code>Param_Sets_GR4J</code> <code>data.frame</code> is to run the GR4J model with each parameter set and to select the best one according to an objective function (here we use the Nash-Sutcliffe Efficiency criterion).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit_Loop &lt;-<span class="st"> </span><span class="kw">apply</span>(Param_Sets_GR4J, <span class="dv">1</span>, <span class="cf">function</span>(iParam) {
   OutputsModel_Cal &lt;-<span class="st"> </span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions_Cal,
                                     <span class="dt">Param =</span> iParam)
@@ -459,8 +459,13 @@ InputsCrit_Val  &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit<
 <p>Generally, the advantage of using GR4J parameter sets rather than the GR4J generalist parameter quantiles is that they make more sense than a simple exploration of combinations of quantiles of parameter distributions (each parameter set represents a consistent ensemble). In addition, for the first step, the number of iterations is smaller (27 runs instead of 81), which can save time if one wants to run a very large number of calibrations.</p>
 </div>
 </div>
-<div id="references" class="section level1">
-<h1><span class="header-section-number">4</span> References</h1>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-andreassian_seeking_2014">
+<p>Andréassian, Vazken, François Bourgin, Ludovic Oudin, Thibault Mathevet, Charles Perrin, Julien Lerat, Laurent Coron, and Lionel Berthet. 2014. “Seeking Genericity in the Selection of Parameter Sets: Impact on Hydrological Model Efficiency.” <em>Water Resources Research</em> 50 (10): 8356–66. doi:<a href="https://doi.org/10.1002/2013WR014761">10.1002/2013WR014761</a>.</p>
+</div>
+</div>
 </div>
 
 <footer>
