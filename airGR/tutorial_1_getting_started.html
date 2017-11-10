@@ -346,7 +346,7 @@ div.tocify {
 <p>In the following example, we use a data sample contained in the package. For real applications, the user has to import its data into <strong>R</strong> and to prepare it with an adequate data.frame format as described below.</p>
 <p>First, it is necessary to load the <strong>airGR</strong> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(airGR)</code></pre></div>
-<p>Below is presented an example of a <code>data.frame</code> of hydrometeorological observations time series for a fictional catchment included in the <strong>airGR</strong> package that contains:</p>
+<p>Below is presented an example of a <code>data.frame</code> of daily hydrometeorological observations time series for a fictional catchment included in the <strong>airGR</strong> package that contains:</p>
 <ul>
 <li><em>DatesR</em>: dates in the POSIXt format</li>
 <li><em>P</em>: average precipitation [mm/day]</li>
@@ -381,7 +381,7 @@ div.tocify {
 <p>To facilitate the use of the package, there are several functions dedicated to the creation of these objects:</p>
 <ul>
 <li><code>CreateInputsModel()</code>: prepares the inputs for the different hydrological models (times series of dates, precipitation, observed discharge, etc.)</li>
-<li><code>CreateRunOptions()</code>: prepares the options for the hydrological model run (warm-up period, calibration period, etc.)</li>
+<li><code>CreateRunOptions()</code>: prepares the options for the hydrological model run (warm up period, calibration period, etc.)</li>
 <li><code>CreateInputsCrit()</code>: prepares the options in order to compute the efficiency criterion (choice of the criterion, choice of the transformation on discharge: “log”, “sqrt”, etc.)</li>
 <li><code>CreateCalibOptions()</code>: prepares the options for the hydrological model calibration algorithm (choice of parameters to optimize, predefined values for uncalibrated parameters, etc.)</li>
 </ul>
@@ -418,12 +418,12 @@ div.tocify {
 <ul>
 <li><code>IniStates</code>: the initial states of the 2 unit hydrographs (20 + 40 = 60 units)</li>
 <li><code>IniResLevels</code>: the initial levels of the production and routing stores</li>
-<li><code>IndPeriod_WarmUp</code>: the warm-up period used to run the model, to be defined in the same format as <code>IndPeriod_Run</code></li>
+<li><code>IndPeriod_WarmUp</code>: the warm up period used to run the model, to be defined in the same format as <code>IndPeriod_Run</code></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RunOptions &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,
                                <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Run,
                                <span class="dt">IniStates =</span> <span class="ot">NULL</span>, <span class="dt">IniResLevels =</span> <span class="ot">NULL</span>, <span class="dt">IndPeriod_WarmUp =</span> <span class="ot">NULL</span>)</code></pre></div>
-<pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModel, :     Model warm-up period not defined -&gt; default configuration used 
+<pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModel, :     Model warm up period not defined -&gt; default configuration used 
 ##      The year preceding the run period is used</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(RunOptions)</code></pre></div>
 <pre><code>## List of 6
@@ -437,14 +437,14 @@ div.tocify {
 <p>The <code>CreateRunOptions()</code> function returns warnings if the default initialization options are used:</p>
 <ul>
 <li><code>IniStates</code> and <code>IniResLevels</code> are automatically set to initialize all the model states at 0, except for the production and routing stores which are initialized at 50 % of their capacity</li>
-<li><code>IndPeriod_WarmUp</code> default setting ensures a one-year warm-up using the time steps preceding the <code>IndPeriod_Run</code>, if available</li>
+<li><code>IndPeriod_WarmUp</code> default setting ensures a one-year warm up using the time steps preceding the <code>IndPeriod_Run</code>, if available</li>
 </ul>
 </div>
 <div id="inputscrit-object" class="section level2">
 <h2><span class="header-section-number">2.3</span> InputsCrit object</h2>
 <p>The <code>CreateInputsCrit()</code> function allows to prepare the input in order to calculate a criterion. It is possible to define the following arguments:</p>
 <ul>
-<li><code>FUN_CRIT</code>: the name of the error criterion function (they are introduced later on)</li>
+<li><code>FUN_CRIT</code>: the name of the error criterion function (the available functions are introduced later on)</li>
 <li><code>InputsModel</code>: the inputs of the hydrological model previously prepared by the <code>CreateInputsModel()</code> function</li>
 <li><code>RunOptions</code>: the options of the hydrological model previously prepared by the <code>CreateRunOptions()</code> function</li>
 <li><code>Qobs</code>: the observed discharge expressed in <em>mm/time step</em></li>
@@ -575,7 +575,7 @@ Param</code></pre></div>
 </div>
 <div id="efficiency-criterion" class="section level2">
 <h2><span class="header-section-number">6.3</span> Efficiency criterion</h2>
-<p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use an other criterion.</p>
+<p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use another criterion.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</code></pre></div>
 <pre><code>## Crit. NSE[Q] = 0.7985</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(OutputsCrit)</code></pre></div>
