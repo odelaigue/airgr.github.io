@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Generalist parameter sets for the GR4J model</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- NOTE: add "navbar-inverse" class for an alternate navbar background -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">airGR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="page_1_get_started.html">Get Started</a></li>
+        <li class="Download">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a></li>
+			<li><a href="page_2.2_param_mcmc.html">MCMC Parameter estimation</a></li>
+			<li><a href="page_3_param_sets_GR4J.html">GR4J Generalist parameter sets</a></li>
+			<li><a href="page_4_customization.html">Customization</a></li>
+          </ul>
+		</li>
+        <li class="Download">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://cran.r-project.org/web/packages/airGR/index.html" onclick="window.open(this.href); return false;">Package</a></li>
+			<li><a href="https://cran.r-project.org/web/packages/airGR/airGR.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+          </ul>
+		</li>
+		<li><a href="NEWS.html">News</a></li>
+		<li><a href="publications.html">Publications</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+		<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='logo/logo_irstea.svg' style='width:45px;height:45px;'></a>
+		<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='logo/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
+		<a href='https://webgr.irstea.fr/en/activites/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='logo/logo_airGR.svg' style='width:45px;height:45px;'></a>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<p style ="margin-top: 10px;"><a href="http://cran.rstudio.com/web/packages/airGR/index.html"><img src="https://www.r-pkg.org/badges/version-ago/airGR" /></a> <a href="https://www.rdocumentation.org/packages/airGR/versions/1.0.5.12"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGR?color=orange" /></a> <a href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85019181866&amp;doi=10.1016%2fj.envsoft.2017.05.002&amp;partnerID=40&amp;md5=c43302ad799fc0dbdef93fd3d8c14aa4"><img src="https://zenodo.org/badge/DOI/10.1016/zenodo.10.1016.svg" alt="DOI" /></a> <a href="https://www.r-project.org/Licenses/GPL-2"><img src="https://img.shields.io/badge/License-GPL%20v2-yellow.svg" /></a></p>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Generalist parameter sets for the GR4J model</h1>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<div id="scope" class="section level2">
+<h2><span class="header-section-number">1.1</span> Scope</h2>
+<p>In the <strong>airGR</strong> package, the classical way to calibrate a model is to use the Michel’s algorithm (see the <code>Calibration_Michel()</code> function).</p>
+<p>The Michel’s algorithm combines a global and a local approach. A screening is first performed either based on a rough predefined grid (considering various initial values for each parameter) or from a list of initial parameter sets. The best set identified in this screening is then used as a starting point for the steepest descent local search algorithm.</p>
+<p>In some specific situations, for example if the calibration period is too short and by consequence non representative of the catchment behavior, a local calibration algorithm can give poor results.</p>
+<p>In this page, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">(<span class="citeproc-not-found" data-reference-id="andreassian_seeking_2014"><strong>???</strong></span>)</span>.</p>
+</div>
+<div id="data-preparation" class="section level2">
+<h2><span class="header-section-number">1.2</span> Data preparation</h2>
+<p>We load an example data set from the package and the GR4J parameter sets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## loading catchment data
+<span class="kw">data</span>(L0123001)
+
+## loading generalist parameter sets
+<span class="kw">data</span>(Param_Sets_GR4J)</code></pre></div>
+<p>The given GR4J <strong>X4u</strong> variable does not correspond to the actual GR4J <strong>X4</strong> parameter. As explained in <span class="citation">(<span class="citeproc-not-found" data-reference-id="andreassian_seeking_2014"><strong>???</strong></span>)</span>, the given GR4J <strong>X4u</strong> value has to be adjusted (rescaled) using catchment area (S) [km2] as follows: <code>X4 = X4u / 5.995 * S^0.3</code> (please= note that <strong>the formula is erroneous in the publication</strong>).</p>
+<p>It means we need first to transform the <strong>X4</strong> parameter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Param_Sets_GR4J<span class="op">$</span>X4 &lt;-<span class="st"> </span>Param_Sets_GR4J<span class="op">$</span>X4u <span class="op">/</span><span class="st"> </span><span class="fl">5.995</span> <span class="op">*</span><span class="st"> </span>BasinInfo<span class="op">$</span>BasinArea<span class="op">^</span><span class="fl">0.3</span>
+Param_Sets_GR4J<span class="op">$</span>X4u &lt;-<span class="st"> </span><span class="ot">NULL</span>
+Param_Sets_GR4J &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(Param_Sets_GR4J)</code></pre></div>
+<p>Please, find below the summary of the 27 sets of the 4 parameters.</p>
+<pre><code>##        X1             X2              X3            X4      
+##  Min.   : 126   Min.   :-54.5   Min.   :  8   Min.   :1.21  
+##  1st Qu.: 208   1st Qu.: -2.0   1st Qu.: 35   1st Qu.:1.75  
+##  Median : 291   Median : -1.1   Median : 76   Median :2.10  
+##  Mean   : 471   Mean   : -3.4   Mean   : 90   Mean   :2.09  
+##  3rd Qu.: 359   3rd Qu.: -0.6   3rd Qu.:106   3rd Qu.:2.45  
+##  Max.   :4006   Max.   :  0.8   Max.   :318   Max.   :3.47</code></pre>
+</div>
+<div id="object-model-preparation" class="section level2">
+<h2><span class="header-section-number">1.3</span> Object model preparation</h2>
+<p>We assume that the R global environment contains data and functions from the <strong>airGR</strong> <a href="page_1_get_started.html">Get Started</a> page.</p>
+<p>The calibration period has been defined from <strong>1990-01-01</strong> to <strong>1990-02-28</strong>, and the validation period from <strong>1990-03-01</strong> to <strong>1999-12-31</strong>.</p>
+<p>As a consequence, in this example the calibration period is very short, less than 6 months.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## preparation of the InputsModel object
+InputsModel &lt;-<span class="st"> </span><span class="kw">CreateInputsModel</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">DatesR =</span> BasinObs<span class="op">$</span>DatesR, 
+                                 <span class="dt">Precip =</span> BasinObs<span class="op">$</span>P, <span class="dt">PotEvap =</span> BasinObs<span class="op">$</span>E)
+
+## ---- calibration step
+
+## short calibration period selection (&lt; 6 months)
+Ind_Cal &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;01/01/1990 00:00&quot;</span>), 
+               <span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;28/02/1990 00:00&quot;</span>))
+
+## preparation of the RunOptions object for the calibration period
+RunOptions_Cal &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,
+                               <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Cal)
+
+## efficiency criterion: Nash-Sutcliffe Efficiency
+InputsCrit_Cal  &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit</span>(<span class="dt">FUN_CRIT =</span> ErrorCrit_NSE, <span class="dt">InputsModel =</span> InputsModel, 
+                                    <span class="dt">RunOptions =</span> RunOptions_Cal, <span class="dt">Qobs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Cal])
+
+
+## ---- validation step
+
+## validation period selection
+Ind_Val &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;01/03/1990 00:00&quot;</span>), 
+               <span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;31/12/1999 00:00&quot;</span>))
+
+## preparation of the RunOptions object for the validation period
+RunOptions_Val &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,
+                                   <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Val)
+
+## efficiency criterion (Nash-Sutcliffe Efficiency) on the validation period
+InputsCrit_Val  &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit</span>(<span class="dt">FUN_CRIT =</span> ErrorCrit_NSE, <span class="dt">InputsModel =</span> InputsModel, 
+                                <span class="dt">RunOptions =</span> RunOptions_Val, <span class="dt">Qobs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Val])</code></pre></div>
+</div>
+</div>
+<div id="calibration-of-the-gr4j-model-with-the-generalist-parameter-sets" class="section level1">
+<h1><span class="header-section-number">2</span> Calibration of the GR4J model with the generalist parameter sets</h1>
+<p>It is recommended to use the generalist parameter sets when the calibration period is less than 6 month.</p>
+<p>As shown in <span class="citation">(<span class="citeproc-not-found" data-reference-id="andreassian_seeking_2014"><strong>???</strong></span>)</span>, a recommended way to use the <code>Param_Sets_GR4J</code> <code>data.frame</code> is to run the GR4J model with each parameter set and to select the best one according to an objective function (here we use the Nash-Sutcliffe Efficiency criterion).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit_Loop &lt;-<span class="st"> </span><span class="kw">apply</span>(Param_Sets_GR4J, <span class="dv">1</span>, <span class="cf">function</span>(iParam) {
+  OutputsModel_Cal &lt;-<span class="st"> </span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions_Cal,
+                                    <span class="dt">Param =</span> iParam)
+  OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit_Cal, <span class="dt">OutputsModel =</span> OutputsModel_Cal)
+  <span class="kw">return</span>(OutputsCrit<span class="op">$</span>CritValue)
+})</code></pre></div>
+<p>Find below the 27 criteria corresponding to the different parameter sets.</p>
+<p>The criterion values are quite low (from -1.639 to 0.336), which can be expected as this does not represents an actual calibration.</p>
+<pre><code>##  [1]  0.0573  0.1331 -0.0168  0.1613  0.0345  0.1046 -0.0458  0.3359
+##  [9]  0.2440 -0.3858 -0.0830 -1.0930  0.2843  0.2792  0.1505 -0.0209
+## [17] -0.0825  0.1298  0.2903 -0.1188 -0.3834 -0.0836  0.0279 -0.0488
+## [25] -0.1675  0.1719 -1.6386</code></pre>
+<p>The parameter set corresponding to the best criterion is the following:</p>
+<pre><code>##     X1     X2     X3     X4 
+## 291.00   0.30 109.10   2.01</code></pre>
+<p>Now we can compute the Nash-Sutcliffe Efficiency criterion on the validation period. A quite good value (0.777) is found.</p>
+</div>
+<div id="calibration-of-the-gr4j-model-with-the-built-in-calibration_michel-function" class="section level1">
+<h1><span class="header-section-number">3</span> Calibration of the GR4J model with the built-in <code>Calibration_Michel()</code> function</h1>
+<p>As seen above, the Michel’s calibration algorithm is based on a local search procedure.</p>
+<p>It is <strong>not recommanded</strong> to use the <code>Calibration_Michel()</code> function when the <strong>calibration period is less than 6 month</strong>. We will show below its application on the same short period for two configurations of the grid-screening step to demonstrate that it is less efficient than the generalist parameters sets calibration.</p>
+<div id="gr4j-parameter-distributions-quantiles-used-in-the-grid-screening-step" class="section level2">
+<h2><span class="header-section-number">3.1</span> GR4J parameter distributions quantiles used in the grid-screening step</h2>
+<p>By default, the predefined grid used by the <code>Calibration_Michel()</code> function contains parameters quantiles computed after recursive calibrations on 1200 basins (from Australia, France and USA).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel)</code></pre></div>
+<p>The parameter set corresponding to the best criterion is the following:</p>
+<pre><code>##     X1     X2     X3     X4 
+## 165.05   6.46 422.50   2.45</code></pre>
+<p>The Nash-Sutcliffe Efficiency criterion computed on the calibration period is better (0.495) than with the generalist parameter sets, but the one computed on the validation period is lower (0.569). This shows that the generalist parameter sets give more robust model in this case.</p>
+</div>
+<div id="gr4j-parameter-sets-used-in-the-grid-screening-step" class="section level2">
+<h2><span class="header-section-number">3.2</span> GR4J parameter sets used in the grid-screening step</h2>
+<p>It is also possible to give to the <code>CreateCalibOptions()</code> function a matrix of parameter sets used for the grid-screening calibration procedure. So, it possible is to use by this way the GR4J generalist parameter sets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel,
+                                   <span class="dt">StartParamList =</span> Param_Sets_GR4J)</code></pre></div>
+<p>Here is the parameter set corresponding to the best criteria found.</p>
+<pre><code>##     X1     X2     X3     X4 
+## 161.62   6.53 429.00   2.45</code></pre>
+<p>The results are the same here. The Nash-Sutcliffe Efficiency criterion computed on the calibration period is better (0.495), but the one computed on the validation period is just a little bit lower (0.567) than the classical calibration.</p>
+<p>Generally, the advantage of using GR4J parameter sets rather than the GR4J generalist parameter quantiles is that they make more sense than a simple exploration of combinations of quantiles of parameter distributions (each parameter set represents a consistent ensemble). In addition, for the first step, the number of iterations is smaller (27 runs instead of 81), which can save time if one wants to run a very large number of calibrations.</p>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1><span class="header-section-number">4</span> References</h1>
+</div>
+
+<footer>
+<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Team</a>&nbsp;- Antony, France.</p>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
