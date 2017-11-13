@@ -344,8 +344,8 @@ div.tocify {
 <li><p>The documentation and help of several functions were improved.</p></li>
 </ul>
 </div>
-<div id="cran-comparibility-updates" class="section level4">
-<h4>CRAN-comparibility updates</h4>
+<div id="cran-compatibility-updates" class="section level4">
+<h4>CRAN-compatibility updates</h4>
 <ul>
 <li>“airGR.c” file registers native routines.</li>
 </ul>
@@ -427,7 +427,7 @@ div.tocify {
 <ul>
 <li><p><code>SeriesAggreg()</code> gains a TimeLag argument that corresponds to a numeric value indicating a time lag (in seconds) for the time series aggregation (useful to aggregate hourly time series to the daily time step for instance). In addition, the function now accepts input dates in both POSIXt formats (POSIXct and POSIXlt). The output is in POSIXct format.</p></li>
 <li><p><code>plot_OutputsModel()</code> gains a <code>log_scale</code> argument in order to plot the flow with a log scale.</p></li>
-<li><p>A tutorial is available online on the following link: from <a href="http://webgr.irstea.fr/airGR" class="uri">http://webgr.irstea.fr/airGR</a>. It can also be displayed with the <code>vignette(“airGR”)</code> command</p></li>
+<li><p>A tutorial is available online on the following link: from <a href="http://webgr.irstea.fr/airGR" class="uri">http://webgr.irstea.fr/airGR</a>. It can also be displayed with the <code>vignette(“airGR”)</code> command.</p></li>
 </ul>
 </div>
 <div id="bug-fixes-3" class="section level4">
@@ -504,8 +504,8 @@ div.tocify {
 <li>Removal of an unnecessary warning when <code>IndPeriod_WarmUp = 0</code>.</li>
 </ul>
 </div>
-<div id="cran-comparibility-updates-1" class="section level4">
-<h4>CRAN-comparibility updates</h4>
+<div id="cran-compatibility-updates-1" class="section level4">
+<h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Modification of namespace file to ensure proper use under linux whithout compilation issues.</li>
 </ul>
@@ -639,7 +639,7 @@ div.tocify {
 <li><p>RC11 bug correction: the automatic selection of the warm-up period was not working properly when no data was available from warm-up (i.e. when the user had set the run to start at the very first index).</p></li>
 <li><p>RC10 bug correction: the <code>CalibrationAlgo_HBAN()</code> function was not working in the very rare case when the diagonal search was activated and lead to a set outside the authorised range.</p></li>
 <li><p>RC9 bug correction: the <code>CalibrationAlgo_HBAN()</code> function was not working properly with models having only one parameter.</p></li>
-<li><p>RC8 bug correction of the <code>ModelDefaultIniOptions()</code> function (this bug was introduced in the RC7 and caused an error when <code>IndPeriod_WarmUp = NULL</code></p></li>
+<li><p>RC8 bug correction of the <code>ModelDefaultIniOptions()</code> function (this bug was introduced in the RC7 and caused an error when <code>IndPeriod_WarmUp = NULL</code>.</p></li>
 <li><p>RC7 bug correction of the <code>ModelDefaultIniOptions()</code> function (the automatic selection of one year for warm-up was not handling properly missing data).</p></li>
 <li><p>RC6 correction of the help files (the description of CemaNeige parameters were inverted).</p></li>
 <li><p>RC5 differs from previous releases in the way the data are read and stored (in a list instead of individual vectors). The package is similar, only the examples of Main and the files in MyScriptBlocks have changed. All basin data are now stored inside a list named <code>BasinData</code>. This will greatly ease the future use of Rdata files (instead of txt files) as storage format for the time series of observation.</p></li>
@@ -720,7 +720,7 @@ div.tocify {
 <div id="new-features-9" class="section level4">
 <h4>New features</h4>
 <ul>
-<li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows</li>
+<li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows.</li>
 </ul>
 </div>
 <div id="bug-fixes-9" class="section level4">
