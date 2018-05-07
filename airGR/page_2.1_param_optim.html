@@ -418,20 +418,20 @@ list_obj &lt;-<span class="st"> </span><span class="kw">sapply</span>(list_opt, 
 df_port  &lt;-<span class="st"> </span><span class="kw">data.frame</span>(list_par, <span class="dt">RMSE =</span> list_obj)</code></pre></div>
 <p>As can be seen below, the optimum performance criterion values (column <em>objective</em>) can differ from the global optimum value in many cases, resulting in various parameter sets.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df_port)</code></pre></div>
-<pre><code>##        X1              X2               X3                 X4          
-##  Min.   :5.548   Min.   :0.1231   Min.   :-0.04074   Min.   :-8.24302  
-##  1st Qu.:5.548   1st Qu.:0.1237   1st Qu.:-0.01277   1st Qu.:-8.24302  
-##  Median :5.548   Median :0.8843   Median : 4.47923   Median :-8.24302  
-##  Mean   :5.685   Mean   :0.6307   Mean   : 2.97879   Mean   :-5.38233  
-##  3rd Qu.:5.954   3rd Qu.:0.8843   3rd Qu.: 4.47923   3rd Qu.: 0.01052  
-##  Max.   :5.964   Max.   :0.8843   Max.   : 4.47923   Max.   : 0.99606  
-##       RMSE       
-##  Min.   :0.7852  
-##  1st Qu.:0.7852  
-##  Median :0.7852  
-##  Mean   :0.9338  
-##  3rd Qu.:1.2211  
-##  Max.   :1.2508</code></pre>
+<pre><code>##        X1             X2              X3              X4       
+##  Min.   :5.55   Min.   :0.123   Min.   :-0.04   Min.   :-8.24  
+##  1st Qu.:5.55   1st Qu.:0.124   1st Qu.:-0.01   1st Qu.:-8.24  
+##  Median :5.55   Median :0.884   Median : 4.48   Median :-8.24  
+##  Mean   :5.68   Mean   :0.631   Mean   : 2.98   Mean   :-5.38  
+##  3rd Qu.:5.95   3rd Qu.:0.884   3rd Qu.: 4.48   3rd Qu.: 0.01  
+##  Max.   :5.96   Max.   :0.884   Max.   : 4.48   Max.   : 1.00  
+##       RMSE      
+##  Min.   :0.785  
+##  1st Qu.:0.785  
+##  Median :0.785  
+##  Mean   :0.934  
+##  3rd Qu.:1.221  
+##  Max.   :1.251</code></pre>
 <p>The existence of several local minima illustrates the importance of defining an appropriate starting point or of using a multi-start strategy or a global optimization strategy.</p>
 </div>
 <div id="global-optimization" class="section level1">
@@ -464,12 +464,12 @@ df_port  &lt;-<span class="st"> </span><span class="kw">data.frame</span>(list_p
 <div id="results" class="section level1">
 <h1><span class="header-section-number">4</span> Results</h1>
 <p>As it can be seen in the table below, the four additional optimization strategies tested lead to very close optima.</p>
-<pre><code>##    Algo      X1    X2     X3    X4
-## 1 airGR 257.238 1.012 88.235 2.208
-## 2  PORT 256.808 1.004 88.167 2.205
-## 3    DE 256.808 1.004 88.167 2.205
-## 4   PSO 256.972 1.005 88.206 2.205
-## 5 MA-LS 256.806 1.004 88.167 2.205</code></pre>
+<pre><code>##    Algo  X1   X2   X3   X4
+## 1 airGR 257 1.01 88.2 2.21
+## 2  PORT 257 1.00 88.2 2.21
+## 3    DE 257 1.00 88.2 2.21
+## 4   PSO 257 1.00 88.2 2.21
+## 5 MA-LS 257 1.00 88.2 2.21</code></pre>
 <!-- This is an expected result because the response surface for quadratic performance criteria of the **GR4J** model is generally sufficiently well defined in the transformed parameter space to allow using a local optimization strategy instead of a more time consuming global optimization strategy. -->
 </div>
 
