@@ -52,6 +52,7 @@ img.icon {
 
 img {
   max-width: 100%;
+  vertical-align:top;
 }
 
 /* Section anchors ---------------------------------*/
