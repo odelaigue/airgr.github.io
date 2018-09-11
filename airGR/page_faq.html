@@ -9,10 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="François Bourgin" />
 
 
-<title>Plugging in new calibration algorithms in airGR</title>
+<title>Frequently asked questions</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,49 +25,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -573,122 +529,61 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Plugging in new calibration algorithms in airGR</h1>
-<h4 class="author"><em>François Bourgin</em></h4>
+<h1 class="title toc-ignore">Frequently asked questions</h1>
 
 </div>
 
 
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="scope" class="section level2">
-<h2><span class="header-section-number">1.1</span> Scope</h2>
-<p>The Michel’s calibration strategy (<code>Calibration_Michel()</code> function) is the calibration algorithm proposed in <strong><font color="#009EE0">airGR</font></strong>. However, other optimization methods can be used in combination with <strong><font color="#009EE0">airGR</font></strong>. We show here how to use different R packages to perform parameter estimation.</p>
-<p>In this page, we use the <strong>GR4J</strong> model to illustrate the different optimization strategies. In particular, we assume that the R global environment contains input climate data, observed discharge and functions from the <a href="page_1_get_started.html">Get Started</a> page, as shown below. Please note that the calibration period is defined in the <code>CreateRunOptions()</code> function .</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</code></pre></div>
-<p>Regarding the different optimization strategies presented here, we refer to each package for in-depth information about the description of the methods used.</p>
-<p>Please note that this page is only for illustration purposes and does not provide any guidance about which optimization strategies is recommended for the family of the <strong>GR</strong> models.</p>
+<div id="specific-questions-relative-to-airgr" class="section level2">
+<h2>Specific questions relative to airGR</h2>
+<div id="is-there-any-flood-forecasting-model-in-airgr" class="section level3">
+<h3>Is there any flood forecasting model in airGR?</h3>
+<p>All the RR models included in <strong><font color="#009EE0">airGR</font></strong> are set up to work in a simulation mode. However, provided that users have meteorological forecast data and arrange their code to do so, hydrological forecasting can be performed with the <strong><font color="#009EE0">airGR</font></strong> RR models (especially the hourly and daily models).</p>
 </div>
-<div id="definition-of-the-necessary-function" class="section level2">
-<h2><span class="header-section-number">1.2</span> Definition of the necessary function</h2>
-<p>Parameter estimation can be performed by defining a function that takes a parameter set as input and returns the value of the performance criterion. There are two important steps: the transformation of parameters to real space and the computation of the value of the performance criterion. Here we choose to minimize the root mean square error.</p>
-<p>The change of the repository from the “real” parameter space to a “transformed” space ensures homogeneity of displacement in the different dimensions of the parameter space during the step-by-step procedure of the calibration algorithm of the model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OptimGR4J &lt;-<span class="st"> </span><span class="cf">function</span>(Param_Optim) {
-  ## Transformation of the parameter set to real space
-  Param_Optim_Vre &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="dt">ParamIn =</span> Param_Optim,
-                                              <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>)
-  ## Simulation given a parameter set
-  OutputsModel &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel,
-                                       <span class="dt">RunOptions =</span> RunOptions,
-                                       <span class="dt">Param =</span> Param_Optim_Vre)
-  ## Computation of the value of the performance criteria
-  OutputsCrit &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">ErrorCrit_RMSE</span>(<span class="dt">InputsCrit =</span> InputsCrit,
-                                       <span class="dt">OutputsModel =</span> OutputsModel,
-                                       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-  <span class="kw">return</span>(OutputsCrit<span class="op">$</span>CritValue)
-}</code></pre></div>
-<p>In addition, we need to define the lower and upper bounds of the four <strong>GR4J</strong> parameters in the transformed parameter space:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lowerGR4J &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.99</span>, <span class="dt">times =</span> <span class="dv">4</span>)
-upperGR4J &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="op">+</span><span class="fl">9.99</span>, <span class="dt">times =</span> <span class="dv">4</span>)</code></pre></div>
+<div id="what-about-inundation-modelling-can-airgr-do-that" class="section level3">
+<h3>What about inundation modelling? Can airGR do that?</h3>
+<p>No. We have some research ongoing work on it but nothing in <strong><font color="#009EE0">airGR</font></strong> yet.</p>
 </div>
+<div id="is-grp-in-airgr" class="section level3">
+<h3>Is GRP in airGR?</h3>
+<p><a href="https://webgr.irstea.fr/en/modele-de-prevision-grp/">GRP</a> is the operational flood forecasting model used by many flood forecasting centres in France. It is not included in <strong><font color="#009EE0">airGR</font></strong> (see previous question) but is available upon request and after signing an agreement, both for research and real-time use, when contacting the responsible team.</p>
 </div>
-<div id="local-optimization" class="section level1">
-<h1><span class="header-section-number">2</span> Local optimization</h1>
-<p>We start with a local optimization strategy by using the PORT routines (using the <code>nlminb()</code> of the <code>stats</code> package) and by setting a starting point in the transformed parameter space:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">startGR4J &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="op">-</span><span class="fl">8.7</span>)
-optPORT &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> startGR4J, 
-                         <span class="dt">objective =</span> OptimGR4J,
-                         <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,
-                         <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))</code></pre></div>
-<p>The RMSE value reaches a local minimum value after 35 iterations.</p>
-<p>We can also try a multi-start approach to test the consistency of the local optimization. Here we use the same grid used for the filtering step of the Michel’s calibration strategy (<code>Calibration_Michel()</code> function). For each starting point, a local optimization is performed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">startGR4J &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">data.frame</span>(CalibOptions<span class="op">$</span>StartParamDistrib))
-optPORT_ &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-  opt &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> x, 
-                       <span class="dt">objective =</span> OptimGR4J,
-                       <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,
-                       <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))
-}
-list_opt &lt;-<span class="st"> </span><span class="kw">apply</span>(startGR4J, <span class="dv">1</span>, optPORT_)</code></pre></div>
-<p>We can then extract the best parameter sets and the value of the performance criteria:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">list_par &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(list_opt, <span class="cf">function</span>(x) x<span class="op">$</span>par))
-list_obj &lt;-<span class="st"> </span><span class="kw">sapply</span>(list_opt, <span class="cf">function</span>(x) x<span class="op">$</span>objective)
-df_port  &lt;-<span class="st"> </span><span class="kw">data.frame</span>(list_par, <span class="dt">RMSE =</span> list_obj)</code></pre></div>
-<p>As can be seen below, the optimum performance criterion values (column <em>objective</em>) can differ from the global optimum value in many cases, resulting in various parameter sets.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df_port)</code></pre></div>
-<pre><code>##        X1             X2              X3              X4       
-##  Min.   :5.55   Min.   :0.123   Min.   :-0.04   Min.   :-8.24  
-##  1st Qu.:5.55   1st Qu.:0.124   1st Qu.:-0.01   1st Qu.:-8.24  
-##  Median :5.55   Median :0.884   Median : 4.48   Median :-8.24  
-##  Mean   :5.68   Mean   :0.631   Mean   : 2.98   Mean   :-5.38  
-##  3rd Qu.:5.95   3rd Qu.:0.884   3rd Qu.: 4.48   3rd Qu.: 0.01  
-##  Max.   :5.96   Max.   :0.884   Max.   : 4.48   Max.   : 1.00  
-##       RMSE      
-##  Min.   :0.785  
-##  1st Qu.:0.785  
-##  Median :0.785  
-##  Mean   :0.934  
-##  3rd Qu.:1.221  
-##  Max.   :1.251</code></pre>
-<p>The existence of several local minima illustrates the importance of defining an appropriate starting point or of using a multi-start strategy or a global optimization strategy.</p>
+<div id="is-otamin-in-airgr" class="section level3">
+<h3>Is OTAMIN in airGR?</h3>
+<p><a href="https://webgr.irstea.fr/en/otamin/">OTAMIN</a> is a forecast uncertainty tool that is not included in <strong><font color="#009EE0">airGR</font></strong>. See the webpage for further information.</p>
 </div>
-<div id="global-optimization" class="section level1">
-<h1><span class="header-section-number">3</span> Global optimization</h1>
-<p>Global optimization is most often used when facing a complex response surface, with multiple local mimina. Here we use the following R implementation of some popular strategies:</p>
-<ul>
-<li><a href="https://cran.r-project.org/package=DEoptim">DEoptim: differential evolution</a></li>
-<li><a href="https://cran.r-project.org/package=hydroPSO">hydroPSO: particle swarm</a></li>
-<li><a href="https://cran.r-project.org/package=Rmalschains">Rmalschains: memetic algorithms</a></li>
-</ul>
-<div id="differential-evolution" class="section level2">
-<h2><span class="header-section-number">3.1</span> Differential Evolution</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">optDE &lt;-<span class="st"> </span>DEoptim<span class="op">::</span><span class="kw">DEoptim</span>(<span class="dt">fn =</span> OptimGR4J,
-                          <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,
-                          <span class="dt">control =</span> DEoptim<span class="op">::</span><span class="kw">DEoptim.control</span>(<span class="dt">NP =</span> <span class="dv">40</span>, <span class="dt">trace =</span> <span class="dv">10</span>))</code></pre></div>
+<div id="can-we-perform-flow-forecasting-with-airgr" class="section level3">
+<h3>Can we perform flow forecasting with airGR?</h3>
+<p>Yes, with some data manipulation, such a work has already been done in the past. However we did not include a specific function for this in <strong><font color="#009EE0">airGR</font></strong>.</p>
 </div>
-<div id="particle-swarm" class="section level2">
-<h2><span class="header-section-number">3.2</span> Particle Swarm</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">optPSO &lt;-<span class="st"> </span>hydroPSO<span class="op">::</span><span class="kw">hydroPSO</span>(<span class="dt">fn =</span> OptimGR4J,
-                             <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,
-                             <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">write2disk =</span> <span class="ot">FALSE</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>))</code></pre></div>
+<div id="can-we-perform-data-assimilation-of-any-kind-in-airgr" class="section level3">
+<h3>Can we perform data assimilation of any kind in airGR?</h3>
+<p>No data assimilation scheme or framework is implemented in <strong><font color="#009EE0">airGR</font></strong>. However, the <strong><font color="#009EE0">airGR</font></strong> RR models can be plugged with data assimilation algorithms present in other R packages (see for instance the R packages <a href="https://CRAN.R-project.org/package=FKF">FKF</a>, <a href="https://CRAN.R-project.org/package=KFAS">KFAS</a>, <a href="https://CRAN.R-project.org/package=miscFuncs">miscFuncs</a>, <a href="https://CRAN.R-project.org/package=KFKSDS">KFKSDS</a>, <a href="https://CRAN.R-project.org/package=nimble">nimble</a>, <a href="https://CRAN.R-project.org/package=DatAssim">DatAssim</a>, which we never tested but seem to be plausible solutions).</p>
 </div>
-<div id="ma-ls-chains" class="section level2">
-<h2><span class="header-section-number">3.3</span> MA-LS-Chains</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">optMALS &lt;-<span class="st"> </span>Rmalschains<span class="op">::</span><span class="kw">malschains</span>(<span class="dt">fn =</span> OptimGR4J,
-                                   <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J, 
-                                   <span class="dt">maxEvals =</span> <span class="dv">2000</span>)</code></pre></div>
+<div id="can-we-perform-automatic-calibration-of-the-gr-models-parameters" class="section level3">
+<h3>Can we perform automatic calibration of the GR models parameters?</h3>
+<p>Yes, in <strong><font color="#009EE0">airGR</font></strong> you can use the <code>Calibration_Michel()</code> function, which implements the in-house algorithm of the team. Our algorithm is a mix between a global method and a local method. The first step of the algorithm is to screen the parameters space. The second step is a local steepest descent gradient method. The calibration can be tuned (which parameter not to calibrate, definition of complex calibration periods, etc.).</p>
 </div>
+<div id="how-to-assess-that-my-calibrated-parameters-are-robust" class="section level3">
+<h3>How to assess that my calibrated parameters are robust?</h3>
+<p>The robustness (i.e. ability of simulating good discharge on diverse conditions) can be done by simply running the model on a different period, using the optimised parameters.</p>
 </div>
-<div id="results" class="section level1">
-<h1><span class="header-section-number">4</span> Results</h1>
-<p>As it can be seen in the table below, the four additional optimization strategies tested lead to very close optima.</p>
-<pre><code>##    Algo  X1   X2   X3   X4
-## 1 airGR 257 1.01 88.2 2.21
-## 2  PORT 257 1.00 88.2 2.21
-## 3    DE 257 1.00 88.2 2.21
-## 4   PSO 257 1.00 88.2 2.21
-## 5 MA-LS 257 1.00 88.2 2.21</code></pre>
-<!-- This is an expected result because the response surface for quadratic performance criteria of the **GR4J** model is generally sufficiently well defined in the transformed parameter space to allow using a local optimization strategy instead of a more time consuming global optimization strategy. -->
+<div id="can-we-perform-climate-change-impact-studies-with-airgr" class="section level3">
+<h3>Can we perform climate change impact studies with airGR?</h3>
+<p>Yes of course! What you are trying to do is very similar to a calibration/control exercise as described in the <a href="page_1_get_started.html">Get Started</a> page. You calibrate on a historical period and you simulate the future conditions using the parameters obtained from the previously mentioned calibration. Please note that when analysing your future conditions, you must compare them to simulations made by the model forced by present time GCM/RCM output, not directly to discharge observations, as otherwise you would mix in your analysis the bias of the hydrological model, the bias of the GCM/RCM data and the actual impact of climate change. But this is very common in CC studies so I guess you know all of this.</p>
+</div>
+<div id="i-prefer-to-use-a-mcmc-based-or-a-particle-swarm-optimization-algorithm.-are-these-methods-implemented-in-airgr" class="section level3">
+<h3>I prefer to use a MCMC-based or a particle swarm optimization algorithm. Are these methods implemented in airGR?</h3>
+<p>No, but as these algorithms exist in other packages, they can easily be plugged to <strong><font color="#009EE0">airGR</font></strong>. Please read the <a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a> and the <a href="page_2.2_param_mcmc.html">Bayesian MCMC framework</a> pages to access other global or MCMC-based methods. Detailed examples of how to link the functions are given.</p>
+</div>
+<div id="i-dont-have-enough-discharge-data-to-calibrate-gr4j.-do-you-have-any-solution-for-me" class="section level3">
+<h3>I don’t have enough discharge data to calibrate GR4J. Do you have any solution for me?</h3>
+<p>A set of generalist parameters for GR4J is provided in the <code>Param_Sets_GR4J</code> object. This set of parameters can be loaded with the following R command: <code>data(Param_Sets_GR4J)</code>. The <a href="page_3_param_sets_GR4J.html">Generalist parameter sets</a> page explains how to use this list. This set of parameters is quite general and showed to perform better than automatic calibration when very few data are available. Good performance is not warranted, but it is better than nothing. We do not have such a list for the other RR models.</p>
+</div>
+<div id="the-streamflows-simulated-by-the-model-are-very-lowhigh-for-the-first-time-steps.-what-am-i-doing-wrong" class="section level3">
+<h3>The streamflows simulated by the model are very low/high for the first time steps. What am I doing wrong?</h3>
+<p>If not the case already, please define a long enough warm-up period. It allows the model reservoirs to initialise to more plausible values than the default ones.</p>
+</div>
 </div>
 
 <footer>
