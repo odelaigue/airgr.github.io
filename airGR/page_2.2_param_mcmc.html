@@ -652,7 +652,7 @@ mcmcDRAM &lt;-<span class="st"> </span><span class="kw">apply</span>(ListIniPara
 <p>There are several diagnostics that can be used to check the convergence of the chains. The R package <a href="https://cran.r-project.org/package=coda">coda</a> provides several diagnostic tests.</p>
 <p>Among others, the Gelman and Rubin’s convergence can be used. A value close to 1 suggests acceptable convergence. The result will be better with more iterations than 2000. As we kept the iterations during the convergence process, we have to set the <code>autoburnin</code> argument to <code>TRUE</code> in order to consider only the second half of the series.</p>
 <p>Note that we rescale model parameter sets of the GR4J model from the transformed space to the real space.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MultDRAM &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">as.mcmc</span>(<span class="kw">lapply</span>(mcmcDRAM, <span class="cf">function</span>(x) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MultDRAM &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">as.mcmc.list</span>(<span class="kw">lapply</span>(mcmcDRAM, <span class="cf">function</span>(x) {
   coda<span class="op">::</span><span class="kw">as.mcmc</span>(airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="kw">as.matrix</span>(x<span class="op">$</span>pars), <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>))
   }))
 GelRub &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">gelman.diag</span>(MultDRAM, <span class="dt">autoburnin =</span> <span class="ot">TRUE</span>)<span class="op">$</span>mpsrf
@@ -673,7 +673,7 @@ ggmcmc<span class="op">::</span><span class="kw">ggs_density</span>(ParamDRAM_bu
 ## plot: [1,3] [=======&gt;-------------------------------------] 19% est: 1s
 ## plot: [1,4] [==========&gt;----------------------------------] 25% est: 2s
 ## plot: [2,1] [=============&gt;-------------------------------] 31% est: 1s
-## plot: [2,2] [================&gt;----------------------------] 38% est: 1s
+## plot: [2,2] [================&gt;----------------------------] 38% est: 2s
 ## plot: [2,3] [===================&gt;-------------------------] 44% est: 1s
 ## plot: [2,4] [=====================&gt;-----------------------] 50% est: 1s
 ## plot: [3,1] [========================&gt;--------------------] 56% est: 1s
