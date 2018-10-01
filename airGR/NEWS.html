@@ -534,23 +534,66 @@ div.tocify {
 </div>
 
 
-<div id="release-notes-2018-06-29" class="section level3">
-<h3>1.0.10.11 Release Notes (2018-06-29)</h3>
-<div id="bug-fixes" class="section level4">
-<h4>Bug fixes</h4>
+<div id="release-notes-2018-09-28" class="section level3">
+<h3>1.0.14.1 Release Notes (2018-09-28)</h3>
+<div id="deprecated-and-defunct" class="section level4">
+<h4>Deprecated and defunct</h4>
 <ul>
-<li>Fixed bug in <code>RunModel_GR2M</code>. The function now returns the total precipitation (P) instead of the net rainfall (P1).</li>
+<li><p>The <code>LatRad</code> argument is now deprecated in <code>PEdaily_Oudin()</code> and replaced by the <code>Lat</code> argument.</p></li>
+<li><p>The unused <code>Ind_zeroes</code> argument of the <code>CreateInputsCrit()</code> function is now deprecated.</p></li>
+</ul>
+</div>
+<div id="new-features" class="section level4">
+<h4>New features</h4>
+<ul>
+<li><code>PEdaily_Oudin()</code> now presents a <code>LatUnit</code> argument which allows to choose the unit of the latitude (radians and degrees).</li>
 </ul>
 </div>
 <div id="major-user-visible-changes" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
-<li><p><code>RunModel_GR2M</code> now returns more explicit precipitation outputs names.</p></li>
-<li><p><code>CreateInputsCrit</code> now returns a warning message when the KGE (or KGE’) is used with a log transformation on flows.</p></li>
-<li><p>The article reference is corrected.</p></li>
+<li><p><code>Calibration_Michel()</code> is now faster during the grid-screening step when a parameter is set using <code>FixedParam</code> in <code>CreateCalibOptions()</code>.</p></li>
+<li><p><code>CreateCalibOptions()</code> now returns FixedParam argument and a warning message when all the parameters are free (NA) in the <code>FixedParam</code> argument.</p></li>
+<li><p><code>CreateInputsCrit()</code> now returns an error when <code>epsilon</code> is not positive.</p></li>
+<li><p><code>CreateInputsCrit()</code> now returns a warning message in the following case: there are zeroes values in <code>Qobs</code>, <code>epsilon = NULL</code> and <code>transfo = log</code> or <code>inv</code>.</p></li>
+<li><p><code>ErrorCrit*()</code> functions now return a warning message in the following case: there are zeroes values in <code>Qobs</code> or <code>Qsim</code>, <code>epsilon = NULL</code> and <code>transfo = log</code> or <code>inv</code>.</p></li>
 </ul>
 </div>
 <div id="minor-user-visible-changes" class="section level4">
+<h4>Minor user-visible changes</h4>
+<ul>
+<li><p>Several functions of the package were cleant or slightly modified, with no effect on their outputs.</p></li>
+<li><p>Dubious Qls and Qmm values set to NA values between 1997-01-05 and 1997-01-21 in the L0123001 dataset.</p></li>
+<li><p>ORCID numbers are now joined to the names of the authors of the package.</p></li>
+</ul>
+</div>
+<div id="cran-compatibility-updates" class="section level4">
+<h4>CRAN-compatibility updates</h4>
+<ul>
+<li><p>Function name changed in a vignettes to avoid error during the check on Debian distribution</p></li>
+<li><p>As recomanded by CRAN managers, the NEWS file is now at the text format and is no more just a link to the airGR Website</p></li>
+<li><p>Added the <code>Vignette_Param.</code> datasets in order to reduce runtime during the re-building of vignettes. It contains different objects needed for param_optim and param_mcmc vignettes.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="release-notes-2018-06-29" class="section level3">
+<h3>1.0.10.11 Release Notes (2018-06-29)</h3>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li>Fixed bug in <code>RunModel_GR2M()</code>. The function now returns the total precipitation (P) instead of the net rainfall (P1).</li>
+</ul>
+</div>
+<div id="major-user-visible-changes-1" class="section level4">
+<h4>Major user-visible changes</h4>
+<ul>
+<li><p><code>RunModel_GR2M()</code> now returns more explicit precipitation outputs names.</p></li>
+<li><p><code>CreateInputsCrit()</code> now returns a warning message when the KGE (or KGE’) is used with a log transformation on flows.</p></li>
+<li><p>The article reference is corrected.</p></li>
+</ul>
+</div>
+<div id="minor-user-visible-changes-1" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The documentation and help of several functions were improved.</li>
@@ -560,7 +603,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-11-10" class="section level3">
 <h3>1.0.9.64 Release Notes (2017-11-10)</h3>
-<div id="new-features" class="section level4">
+<div id="new-features-1" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>An article describing the airGR package has been published. Its reference has been added and will be displayed with <code>citation(“airGR”)</code>.</p></li>
@@ -578,13 +621,13 @@ div.tocify {
 <li><p>Fixed bug in <code>plot.OutputsModel()</code> for the y-axis labelling of flows time series when <code>log_scale = TRUE</code> and <code>BasinArea</code> is used.</p></li>
 </ul>
 </div>
-<div id="deprectated-and-defunct" class="section level4">
-<h4>Deprectated and defunct</h4>
+<div id="deprecated-and-defunct-1" class="section level4">
+<h4>Deprecated and defunct</h4>
 <ul>
 <li>The <code>RunSnowModule</code> argument is now deprecated in <code>CreateRunOptions()</code>.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-1" class="section level4">
+<div id="major-user-visible-changes-2" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p><code>RunModel_GR4J()</code>, <code>RunModel_GR5J()</code> and <code>RunModel_GR6J()</code> (and <code>CemaNeige_GR*J()</code>) now return Ps, Pn and actual exchanges. See the model Fortran codes for more details about the calculation of these variables.</p></li>
@@ -592,7 +635,7 @@ div.tocify {
 <li><p><code>RunModel_GR5J</code> now returns <code>StateEnd</code> in the same order as the other models.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-1" class="section level4">
+<div id="minor-user-visible-changes-2" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p><code>plot.OutputsModel()</code> now returns a warning message when the length of Qobs is different from the length of Qsim.</p></li>
@@ -602,7 +645,7 @@ div.tocify {
 <li><p>The documentation and help of several functions were improved.</p></li>
 </ul>
 </div>
-<div id="cran-compatibility-updates" class="section level4">
+<div id="cran-compatibility-updates-1" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>“airGR.c” file registers native routines.</li>
@@ -612,10 +655,10 @@ div.tocify {
 </div>
 <div id="release-notes-2017-01-23" class="section level3">
 <h3>1.0.5.12 Release Notes (2017-01-23)</h3>
-<div id="new-features-1" class="section level4">
+<div id="new-features-2" class="section level4">
 <h4>New features</h4>
 <ul>
-<li><code>DataAltiExtrapolation_Valery()</code> and <code>CreateInputsModel()</code> now present a PrecipScale argument which allows rescaling precipitation when it is interpolated on the elevation layers when CemaNeige is used.</li>
+<li><code>DataAltiExtrapolation_Valery()</code> and <code>CreateInputsModel()</code> now present a <code>PrecipScale</code> argument which allows rescaling precipitation when it is interpolated on the elevation layers when CemaNeige is used.</li>
 </ul>
 </div>
 <div id="bug-fixes-2" class="section level4">
@@ -634,14 +677,14 @@ div.tocify {
 </div>
 <div id="release-notes-2017-01-18" class="section level3">
 <h3>1.0.4 Release Notes (2017-01-18)</h3>
-<div id="new-features-2" class="section level4">
+<div id="new-features-3" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>RunModel_CemaNeige()</code>, <code>RunModel_CemaNeigeGR4J()</code>, <code>RunModel_CemaNeigeGR5J()</code> and <code>RunModel_CemaNeigeGR6J()</code> now return air temperature for each elevation layer.</li>
 </ul>
 </div>
-<div id="deprectated-and-defunct-1" class="section level4">
-<h4>Deprectated and defunct</h4>
+<div id="deprecated-and-defunct-2" class="section level4">
+<h4>Deprecated and defunct</h4>
 <ul>
 <li><p>S3 plot method defined for <code>OutputsModel</code> objects. It means that the <code>plot_OutputsModel()</code> function is deprecated and his use has been replaced by the use of <code>plot.OutputsModel()</code> or <code>plot()</code>.</p></li>
 <li><p>In <code>plot.OutputsModel()</code> the <code>PlotChoice</code> argument is deprecated and has been renamed <code>which</code>.</p></li>
@@ -657,7 +700,7 @@ div.tocify {
 </div>
 <div id="release-notes-2016-12-09" class="section level3">
 <h3>1.0.3 Release Notes (2016-12-09)</h3>
-<div id="new-features-3" class="section level4">
+<div id="new-features-4" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>ErrorCrit*()</code> functions gain a warnings argument to replace the verbose action and the verbose argument now prints the criterion value(s).</li>
@@ -680,7 +723,7 @@ div.tocify {
 </div>
 <div id="release-notes-2016-11-03" class="section level3">
 <h3>1.0.2 Release Notes (2016-11-03)</h3>
-<div id="new-features-4" class="section level4">
+<div id="new-features-5" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p><code>SeriesAggreg()</code> gains a TimeLag argument that corresponds to a numeric value indicating a time lag (in seconds) for the time series aggregation (useful to aggregate hourly time series to the daily time step for instance). In addition, the function now accepts input dates in both POSIXt formats (POSIXct and POSIXlt). The output is in POSIXct format.</p></li>
@@ -694,20 +737,20 @@ div.tocify {
 <li>The value <code>sort</code> for the <code>transfo</code> argument of <code>CreateInputsCrit()</code> was not taken into account. It is now fixed.</li>
 </ul>
 </div>
-<div id="deprectated-and-defunct-2" class="section level4">
-<h4>Deprectated and defunct</h4>
+<div id="deprecated-and-defunct-3" class="section level4">
+<h4>Deprecated and defunct</h4>
 <ul>
 <li><p><code>CreateCalibOptions()</code> loses the OptimParam argument that was redundant with the <code>FixedParam</code> argument. The <code>Calibration_Michel()</code> was modified to take into account this change by using directly <code>FixedParam</code>, but this is transparent to the user.</p></li>
 <li><p><code>CreateCalibOptions()</code> loses the StartParam argument that was not used.</p></li>
 </ul>
 </div>
-<div id="major-user-visible-changes-2" class="section level4">
+<div id="major-user-visible-changes-3" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>The <code>RunModel_GR6J()</code> and <code>RunModel_CemaNeigeGR6J()</code> models were modified back to versions previous to 1.0.1 to prevent from unwanted efficiency criteria deterioration related to the calibration with <code>Calibration_Michel()</code>. The actual model codes were not modified but the <code>TransfoParam_GR6J()</code> and <code>CreateCalibOptions()</code> functions were modified regarding the X5 parameter. It is strongly advised to use airGR 1.0.2 for the <code>RunModel_GR6J()</code> and <code>RunModel_CemaNeigeGR6J()</code> functions if you are using <code>Calibration_Michel()</code>, as they are much more efficient. In case you were using your own calibration algorithm, you will not notice any difference.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-2" class="section level4">
+<div id="minor-user-visible-changes-3" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateInputsModel()</code> and <code>DataAltiExtrapolation_Valery()</code> functions now allow both POSIXt formats (POSIXct and POSIXlt).</li>
@@ -717,15 +760,15 @@ div.tocify {
 </div>
 <div id="release-notes-2016-04-21" class="section level3">
 <h3>1.0.1 Release Notes (2016-04-21)</h3>
-<div id="deprectated-and-defunct-3" class="section level4">
-<h4>Deprectated and defunct</h4>
+<div id="deprecated-and-defunct-4" class="section level4">
+<h4>Deprecated and defunct</h4>
 <ul>
 <li><p>The <code>Calibration_HBAN()</code> and <code>DataAltiExtrapolation_HBAN()</code> functions have respectively been renamed as <code>Calibration_Michel()</code> and <code>DataAltiExtrapolation_Valery()</code> after the names of their creators.</p></li>
 <li><p>The <code>Calibration_optim()</code> function has been removed from the package.</p></li>
 <li><p>The silent mode is now defined by the <code>verbose = TRUE</code> argument (formerly <code>quiet = FALSE</code>) in the following functions: <code>Calibration()</code>, <code>Calibration_Michel()</code>, <code>CreateInputsModel()</code>, <code>CreateRunOptions()</code>, <code>DataAltiExtrapolation_Valery()</code>, <code>ErrorCrit()</code>, <code>ErrorCrit_KGE()</code>, <code>ErrorCrit_KGE2()</code>, <code>ErrorCrit_NSE()</code>, <code>ErrorCrit_RMSE()</code>, <code>plot_OutputsModel()</code>, <code>SeriesAggreg()</code>.</p></li>
 </ul>
 </div>
-<div id="major-user-visible-changes-3" class="section level4">
+<div id="major-user-visible-changes-4" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p>The GR5J model has been modified: previously, two unit hydrographs were used, now only one is remaining. As a consequence, simulations from the GR5J (<code>RunModel_GR5J()</code> function) and CemaNeige (<code>RunModel_CemaNeigeGR5J()</code> function) models will be different.</p></li>
@@ -733,7 +776,7 @@ div.tocify {
 <li><p>The quantiles of the parameters have been recalculated with the new transformations (<code>CreateCalibOptions()</code> function). Since these quantiles constitute the starting point of the calibration algorithm, calibration results will be different.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-3" class="section level4">
+<div id="minor-user-visible-changes-4" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The Fortran model core codes have been modified:
@@ -756,13 +799,13 @@ div.tocify {
 <li><p>Fixed bug in <code>CreateRunOptions()</code> that prevented the correct use of the <code>IniResLevels</code> argument (to manually set the filling rate of the production and routing stores).</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-4" class="section level4">
+<div id="minor-user-visible-changes-5" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Removal of an unnecessary warning when <code>IndPeriod_WarmUp = 0</code>.</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-1" class="section level4">
+<div id="cran-compatibility-updates-2" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Modification of namespace file to ensure proper use under linux whithout compilation issues.</li>
@@ -772,7 +815,7 @@ div.tocify {
 </div>
 <div id="release-notes-2015-04-15" class="section level3">
 <h3>0.8.0.2 Release Notes (2015-04-15)</h3>
-<div id="new-features-5" class="section level4">
+<div id="new-features-6" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>Three new hydrological models: <code>RunModel_GR4H() function for </code> GR4H (hourly), <code>RunModel_GR2M()</code> function for GR2M (monthly) and <code>RunModel_GR1A()</code> function for GR1A (yearly).</p></li>
@@ -785,14 +828,14 @@ div.tocify {
 <li>Fixed bug in <code>ErrorCrit_RMSE()</code> which led to incorrect calibration (the criterion was maximised instead of minimised).</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-4" class="section level4">
+<div id="major-user-visible-changes-5" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p>Update of the functions <code>CreateRunOptions()</code>, <code>CreateCalibOptions()</code> and <code>plot_OutputsModel()</code> to handle the new models.</p></li>
 <li><p>Modification of CemaNeige Fortran code to add an update of Gratio after the SnowPack update (no impact on snow simulation).</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-5" class="section level4">
+<div id="minor-user-visible-changes-6" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Improvement of the <code>plot_OutputsModel()</code> function to allow a selection among available plots.</p></li>
@@ -815,7 +858,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-xx-xx" class="section level3">
 <h3>0.7.3 Release Notes (2014-XX-XX)</h3>
-<div id="minor-user-visible-changes-6" class="section level4">
+<div id="minor-user-visible-changes-7" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Improvements allowing the arrival of new models.</p></li>
@@ -827,7 +870,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-07-14" class="section level3">
 <h3>0.7.2 Release Notes (2014-07-14)</h3>
-<div id="new-features-6" class="section level4">
+<div id="new-features-7" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New argument in many functions (<code>quiet = TRUE</code> or <code>FALSE</code>) to choose if the warnings should be suppressed or not.</li>
@@ -839,14 +882,14 @@ div.tocify {
 <li>Fixed bug in <code>CreateCalibOptions()</code> to handle models with only one parameter.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-5" class="section level4">
+<div id="major-user-visible-changes-6" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p>CemaNeige users must now specify one <code>MeanAnSolidPrecip</code> for each elevation layer. The <code>CreateRunOptions()</code> function is impacted.</p></li>
 <li><p>CemaNeige users can now specify the mean elevation of the input series (before it was always considered equal to the catchment median elevation). The impacted functions are <code>CreateInputsModel()</code> and <code>DataAltiExtrapolation_HBAN()</code>.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-7" class="section level4">
+<div id="minor-user-visible-changes-8" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Improvement of the <code>plot_OutputsModel</code> function (to handle 0 in Qobs and Qsim).</p></li>
@@ -863,13 +906,13 @@ div.tocify {
 <li>Fixed bug in <code>Calibration_HBAN()</code>. The function was not working properly with models having only one parameter.</li>
 </ul>
 </div>
-<div id="deprecated-and-defunct" class="section level4">
+<div id="deprecated-and-defunct-5" class="section level4">
 <h4>Deprecated and defunct</h4>
 <ul>
 <li>The <code>CalibrationAlgo_*()</code> functions were renamed into<code>Calibration_*()</code>.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-6" class="section level4">
+<div id="major-user-visible-changes-7" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p>New architecture with better format verification procedure (using classes) and simpler setting of default configuration.</p></li>
@@ -907,20 +950,20 @@ div.tocify {
 </div>
 <div id="release-notes-2014-02-12-1" class="section level3">
 <h3>0.6.1 Release Notes (2014-02-12)</h3>
-<div id="new-features-7" class="section level4">
+<div id="new-features-8" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>Additional functions for results plotting (the <code>{zoo}</code> package is required for some of them).</p></li>
 <li><p>Add multi-objective calibration using <code>nsga2()</code> (the <code>{mco}</code> package is required).</p></li>
 </ul>
 </div>
-<div id="major-user-visible-changes-7" class="section level4">
+<div id="major-user-visible-changes-8" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>The definition of the generic function is now made in a much simpler way (e.g. see <code>DefineFunctions_Model()</code> or <code>DefineFunctions_ErrorCrit()</code>).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-8" class="section level4">
+<div id="minor-user-visible-changes-9" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Code improvements to reduce the computation time.</p></li>
@@ -932,13 +975,13 @@ div.tocify {
 </div>
 <div id="release-notes-2014-02-12-2" class="section level3">
 <h3>0.6.0 Release Notes (2014-02-12)</h3>
-<div id="new-features-8" class="section level4">
+<div id="new-features-9" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>The field Multiplier has been added in the ErrorCrit() outputs, to indicate whether the criterion is an error (to minimise) or and efficiency (to maximise). This allows to provide real efficiency values in the outputs e.g. NSE[Q] instead of (-1) × NSE[Q].</li>
 </ul>
 </div>
-<div id="deprecated-and-defunct-1" class="section level4">
+<div id="deprecated-and-defunct-6" class="section level4">
 <h4>Deprecated and defunct</h4>
 <ul>
 <li><code>EfficiencyCrit()</code> have been replaced by <code>ErrorCrit()</code> to avoid misunderstanding (by default, the algorithms minimise the error criterion).</li>
@@ -948,15 +991,15 @@ div.tocify {
 </div>
 <div id="release-notes-2014-02-05" class="section level3">
 <h3>0.5.2 Release Notes (2014-02-05)</h3>
-<div id="deprectated-and-defunct-4" class="section level4">
-<h4>Deprectated and defunct</h4>
+<div id="deprecated-and-defunct-7" class="section level4">
+<h4>Deprecated and defunct</h4>
 <ul>
 <li><p>The <code>SelectPer</code> arguments are replaced by <code>IndPeriod</code> to ease understanding.</p></li>
 <li><p>The <code>PE</code> arguments are replaced by <code>PotEvap()</code> to ease understanding.</p></li>
 <li><p>The <code>Fsol</code> arguments are replaced by <code>FracSolidPrecip</code> to ease understanding.</p></li>
 </ul>
 </div>
-<div id="major-user-visible-changes-8" class="section level4">
+<div id="major-user-visible-changes-9" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p>R 2.15 in not supported by default.</p></li>
@@ -965,7 +1008,7 @@ div.tocify {
 <li><p>Name of the calibration criterion provided in <code>OutputsAlgo()</code>.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-9" class="section level4">
+<div id="minor-user-visible-changes-10" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Missing values in Fortran are now -999.999 instead of -9.999.</li>
@@ -975,7 +1018,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-01-27" class="section level3">
 <h3>0.5.1 Release Notes (2014-01-27)</h3>
-<div id="new-features-9" class="section level4">
+<div id="new-features-10" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows.</li>
