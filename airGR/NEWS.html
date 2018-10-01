@@ -553,7 +553,7 @@ div.tocify {
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p><code>Calibration_Michel()</code> is now faster during the grid-screening step when a parameter is set using <code>FixedParam</code> in <code>CreateCalibOptions()</code>.</p></li>
-<li><p><code>CreateCalibOptions()</code> now returns FixedParam argument and a warning message when all the parameters are free (NA) in the <code>FixedParam</code> argument.</p></li>
+<li><p><code>CreateCalibOptions()</code> now returns an error when all the parameters are set in the <code>FixedParam</code> argument and a warning message when all the parameters are free (NA) in the <code>FixedParam</code> argument.</p></li>
 <li><p><code>CreateInputsCrit()</code> now returns an error when <code>epsilon</code> is not positive.</p></li>
 <li><p><code>CreateInputsCrit()</code> now returns a warning message in the following case: there are zeroes values in <code>Qobs</code>, <code>epsilon = NULL</code> and <code>transfo = log</code> or <code>inv</code>.</p></li>
 <li><p><code>ErrorCrit*()</code> functions now return a warning message in the following case: there are zeroes values in <code>Qobs</code> or <code>Qsim</code>, <code>epsilon = NULL</code> and <code>transfo = log</code> or <code>inv</code>.</p></li>
