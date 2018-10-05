@@ -848,28 +848,6 @@ div.tocify {
 </div>
 <div id="release-notes-2014-11-01" class="section level3">
 <h3>0.7.4 Release Notes (2014-11-01)</h3>
-<div id="user-visible-changes-3" class="section level4">
-<h4>User-visible changes</h4>
-<ul>
-<li>Stable version stemming from version 0.7.3.</li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="release-notes-2014-xx-xx" class="section level3">
-<h3>0.7.3 Release Notes (2014-XX-XX)</h3>
-<div id="minor-user-visible-changes-7" class="section level4">
-<h4>Minor user-visible changes</h4>
-<ul>
-<li><p>Improvements allowing the arrival of new models.</p></li>
-<li><p>Improvements of the argument verifications in <code>CreateInputsModel()</code>, <code>CreateRunOptions()</code>, <code>CreateInputsCrit()</code>, <code>CreateCalibOptions()</code>.</p></li>
-<li><p>Improvements of all the <code>ErrorCrit()</code> functions to better account for the cases with constant flow values or local zeros.</p></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="release-notes-2014-07-14" class="section level3">
-<h3>0.7.2 Release Notes (2014-07-14)</h3>
 <div id="new-features-7" class="section level4">
 <h4>New features</h4>
 <ul>
@@ -879,31 +857,8 @@ div.tocify {
 <div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
-<li>Fixed bug in <code>CreateCalibOptions()</code> to handle models with only one parameter.</li>
-</ul>
-</div>
-<div id="major-user-visible-changes-6" class="section level4">
-<h4>Major user-visible changes</h4>
-<ul>
-<li><p>CemaNeige users must now specify one <code>MeanAnSolidPrecip</code> for each elevation layer. The <code>CreateRunOptions()</code> function is impacted.</p></li>
-<li><p>CemaNeige users can now specify the mean elevation of the input series (before it was always considered equal to the catchment median elevation). The impacted functions are <code>CreateInputsModel()</code> and <code>DataAltiExtrapolation_HBAN()</code>.</p></li>
-</ul>
-</div>
-<div id="minor-user-visible-changes-8" class="section level4">
-<h4>Minor user-visible changes</h4>
-<ul>
-<li><p>Improvement of the <code>plot_OutputsModel</code> function (to handle 0 in Qobs and Qsim).</p></li>
-<li><p>Improved documentation.</p></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="release-notes-2014-07-14-1" class="section level3">
-<h3>0.7.1 Release Notes (2014-07-14)</h3>
-<div id="bug-fixes-8" class="section level4">
-<h4>Bug fixes</h4>
-<ul>
-<li>Fixed bug in <code>Calibration_HBAN()</code>. The function was not working properly with models having only one parameter.</li>
+<li><p>Fixed bug in <code>CreateCalibOptions()</code> to handle models with only one parameter.</p></li>
+<li><p>Fixed bug in <code>Calibration_HBAN()</code>. The function was not working properly with models having only one parameter.</p></li>
 </ul>
 </div>
 <div id="deprecated-and-defunct-5" class="section level4">
@@ -912,29 +867,39 @@ div.tocify {
 <li>The <code>CalibrationAlgo_*()</code> functions were renamed into<code>Calibration_*()</code>.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-7" class="section level4">
+<div id="major-user-visible-changes-6" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
+<li><p>CemaNeige users must now specify one <code>MeanAnSolidPrecip</code> for each elevation layer. The <code>CreateRunOptions()</code> function is impacted.</p></li>
+<li><p>CemaNeige users can now specify the mean elevation of the input series (before it was always considered equal to the catchment median elevation). The impacted functions are <code>CreateInputsModel()</code> and <code>DataAltiExtrapolation_HBAN()</code>.</p></li>
 <li><p>New architecture with better format verification procedure (using classes) and simpler setting of default configuration.</p></li>
 <li><p>New architecture where the model, calibration and error functions are in the arguments of the functions (the exotic use of “generic function” created by the users has been removed).</p></li>
 <li><p>Improved documentation and examples.</p></li>
 </ul>
-<hr />
 </div>
-</div>
-<div id="release-notes-2014-06-06" class="section level3">
-<h3>0.7.0 Release Notes (2014-06-06)</h3>
-<div id="experimental-features" class="section level4">
-<h4>Experimental features</h4>
+<div id="minor-user-visible-changes-7" class="section level4">
+<h4>Minor user-visible changes</h4>
 <ul>
-<li>unfinished version used for development purpose.</li>
+<li><p>Improvements allowing the arrival of new models.</p></li>
+<li><p>Improvements of the argument verifications in <code>CreateInputsModel()</code>, <code>CreateRunOptions()</code>, <code>CreateInputsCrit()</code>, <code>CreateCalibOptions()</code>.</p></li>
+<li><p>Improvements of all the <code>ErrorCrit()</code> functions to better account for the cases with constant flow values or local zeros.</p></li>
+<li><p>Improvement of the <code>plot_OutputsModel</code> function (to handle 0 in Qobs and Qsim).</p></li>
+<li><p>Improved documentation.</p></li>
 </ul>
 <hr />
 </div>
 </div>
 <div id="release-notes-2014-02-12" class="section level3">
 <h3>0.6.2 Release Notes (2014-02-12)</h3>
-<div id="bug-fixes-9" class="section level4">
+<div id="new-features-8" class="section level4">
+<h4>New features</h4>
+<ul>
+<li><p>Additional functions for results plotting (the <code>{zoo}</code> package is required for some of them).</p></li>
+<li><p>Add multi-objective calibration using <code>nsga2()</code> (the <code>{mco}</code> package is required).</p></li>
+<li><p>The field Multiplier has been added in the ErrorCrit() outputs, to indicate whether the criterion is an error (to minimise) or and efficiency (to maximise). This allows to provide real efficiency values in the outputs e.g. NSE[Q] instead of (-1) × NSE[Q].</p></li>
+</ul>
+</div>
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>RC11 bug correction: the automatic selection of the warm-up period was not working properly when no data was available from warm-up (i.e. when the user had set the run to start at the very first index).</p></li>
@@ -945,46 +910,25 @@ div.tocify {
 <li><p>RC6 correction of the help files (the description of CemaNeige parameters were inverted).</p></li>
 <li><p>RC5 differs from previous releases in the way the data are read and stored (in a list instead of individual vectors). The package is similar, only the examples of Main and the files in MyScriptBlocks have changed. All basin data are now stored inside a list named <code>BasinData</code>. This will greatly ease the future use of Rdata files (instead of txt files) as storage format for the time series of observation.</p></li>
 </ul>
-<hr />
-</div>
-</div>
-<div id="release-notes-2014-02-12-1" class="section level3">
-<h3>0.6.1 Release Notes (2014-02-12)</h3>
-<div id="new-features-8" class="section level4">
-<h4>New features</h4>
-<ul>
-<li><p>Additional functions for results plotting (the <code>{zoo}</code> package is required for some of them).</p></li>
-<li><p>Add multi-objective calibration using <code>nsga2()</code> (the <code>{mco}</code> package is required).</p></li>
-</ul>
-</div>
-<div id="major-user-visible-changes-8" class="section level4">
-<h4>Major user-visible changes</h4>
-<ul>
-<li>The definition of the generic function is now made in a much simpler way (e.g. see <code>DefineFunctions_Model()</code> or <code>DefineFunctions_ErrorCrit()</code>).</li>
-</ul>
-</div>
-<div id="minor-user-visible-changes-9" class="section level4">
-<h4>Minor user-visible changes</h4>
-<ul>
-<li><p>Code improvements to reduce the computation time.</p></li>
-<li><p>Clearer instructions for the adding and modification of a model.</p></li>
-<li><p>Improvements of the documentation.</p></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="release-notes-2014-02-12-2" class="section level3">
-<h3>0.6.0 Release Notes (2014-02-12)</h3>
-<div id="new-features-9" class="section level4">
-<h4>New features</h4>
-<ul>
-<li>The field Multiplier has been added in the ErrorCrit() outputs, to indicate whether the criterion is an error (to minimise) or and efficiency (to maximise). This allows to provide real efficiency values in the outputs e.g. NSE[Q] instead of (-1) × NSE[Q].</li>
-</ul>
 </div>
 <div id="deprecated-and-defunct-6" class="section level4">
 <h4>Deprecated and defunct</h4>
 <ul>
 <li><code>EfficiencyCrit()</code> have been replaced by <code>ErrorCrit()</code> to avoid misunderstanding (by default, the algorithms minimise the error criterion).</li>
+</ul>
+</div>
+<div id="major-user-visible-changes-7" class="section level4">
+<h4>Major user-visible changes</h4>
+<ul>
+<li>The definition of the generic function is now made in a much simpler way (e.g. see <code>DefineFunctions_Model()</code> or <code>DefineFunctions_ErrorCrit()</code>).</li>
+</ul>
+</div>
+<div id="minor-user-visible-changes-8" class="section level4">
+<h4>Minor user-visible changes</h4>
+<ul>
+<li><p>Code improvements to reduce the computation time.</p></li>
+<li><p>Clearer instructions for the adding and modification of a model.</p></li>
+<li><p>Improvements of the documentation.</p></li>
 </ul>
 <hr />
 </div>
@@ -999,7 +943,7 @@ div.tocify {
 <li><p>The <code>Fsol</code> arguments are replaced by <code>FracSolidPrecip</code> to ease understanding.</p></li>
 </ul>
 </div>
-<div id="major-user-visible-changes-9" class="section level4">
+<div id="major-user-visible-changes-8" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><p>R 2.15 in not supported by default.</p></li>
@@ -1008,7 +952,7 @@ div.tocify {
 <li><p>Name of the calibration criterion provided in <code>OutputsAlgo()</code>.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-10" class="section level4">
+<div id="minor-user-visible-changes-9" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Missing values in Fortran are now -999.999 instead of -9.999.</li>
@@ -1018,13 +962,13 @@ div.tocify {
 </div>
 <div id="release-notes-2014-01-27" class="section level3">
 <h3>0.5.1 Release Notes (2014-01-27)</h3>
-<div id="new-features-10" class="section level4">
+<div id="new-features-9" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows.</li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>Incorrect arguments in the call to <code>RunModelAndCrit</code> from <code>CalibrationAlgo_optim_stats</code> and <code>CalibrationAlgo_nlminb_stats</code>.</p></li>
