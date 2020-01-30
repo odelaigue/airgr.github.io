@@ -505,7 +505,7 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2">
 <h2><span class="header-section-number">1.1</span> Scope</h2>
-<p>In the <strong><font color="#009EE0">airGR</font></strong> package, the classical way to calibrate a model is to use the Michel’s algorithm (see the <code>Calibration_Michel()</code> function).</p>
+<p>In the <strong><font color="#00a3a6">airGR</font></strong> package, the classical way to calibrate a model is to use the Michel’s algorithm (see the <code>Calibration_Michel()</code> function).</p>
 <p>The Michel’s algorithm combines a global and a local approach. A screening is first performed either based on a rough predefined grid (considering various initial values for each parameter) or from a list of initial parameter sets. The best set identified in this screening is then used as a starting point for the steepest descent local search algorithm.</p>
 <p>In some specific situations, for example if the calibration period is too short and by consequence non representative of the catchment behaviour, a local calibration algorithm can give poor results.</p>
 <p>In this page, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">Andréassian et al. (2014)</span>.</p>
@@ -583,9 +583,9 @@ div.tocify {
 <a class="sourceLine" id="cb5-6" title="6">})</a></code></pre></div>
 <p>Find below the 27 criteria corresponding to the different parameter sets.</p>
 <p>The criterion values are quite low (from -1.639 to 0.336), which can be expected as this does not represents an actual calibration.</p>
-<pre><code>##  [1]  0.0573  0.1331 -0.0168  0.1613  0.0345  0.1046 -0.0458  0.3359  0.2440 -0.3858 -0.0830 -1.0930  0.2843
-## [14]  0.2792  0.1505 -0.0209 -0.0825  0.1298  0.2903 -0.1188 -0.3834 -0.0836  0.0279 -0.0488 -0.1675  0.1719
-## [27] -1.6386</code></pre>
+<pre><code>##  [1]  0.0573  0.1331 -0.0168  0.1613  0.0345  0.1046 -0.0458  0.3359  0.2440 -0.3858 -0.0830
+## [12] -1.0930  0.2843  0.2792  0.1505 -0.0209 -0.0825  0.1298  0.2903 -0.1188 -0.3834 -0.0836
+## [23]  0.0279 -0.0488 -0.1675  0.1719 -1.6386</code></pre>
 <p>The parameter set corresponding to the best criterion is the following:</p>
 <pre><code>##     X1     X2     X3     X4 
 ## 291.00   0.30 109.10   2.01</code></pre>
